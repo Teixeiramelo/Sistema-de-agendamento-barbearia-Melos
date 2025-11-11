@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia Agendamento Local</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+
+    <div id="logo-flutuante">
+        <img src="img/logo.png" alt="Logo Barbearia Melos" style="max-height: 80px;">
+    </div>
+    
+    <div class="header-barbearia text-center">
+        <div class="container">
+            <h1>Agendamento Barbearia Melos</h1>
+        </div>
+    </div>
+    
+    <main class="container mt-4">    
+    </header>
+
+    <main>
+        <section id="agendamento-form">
+            <h2>Marcar Horário</h2>
+            <form id="form-agendamento">
+                <div>
+                    <label for="nome">Seu Nome:</label>
+                    <input type="text" id="nome" required>
+                </div>
+
+                <div class="mb-3">
+    <label for="barbeiro" class="form-label">Barbeiro:</label>
+    <select id="barbeiro" class="form-control" required>
+        <option value="">Selecione o Barbeiro</option>
+        <option value="Gabriel">Gabriel</option>
+        <option value="Guilherme">Guilherme</option>
+        <option value="Jhon">Jhon</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    
+
+
+                <div>
+                    <label for="servico">Serviço:</label>
+                    <select id="servico" required>
+                        <option value="">Selecione um serviço</option>
+                        <option value="Corte Cabelo">Corte de Cabelo (R$ 40)</option>
+                        <option value="Barba">Barba (R$ 30)</option>
+                        <option value="Completo">Completo (R$ 65)</option>
+                    </select>
+                </div>
+                <div>
+                   
+    <label for="data-hora" class="form-label">Data e Hora:</label>
+    <input type="datetime-local" 
+           id="data-hora" 
+           class="form-control" 
+           required
+           
+           min="08:00" 
+           max="20:00" 
+           step="1800" 
+    >
+</div>
+                </div>
+                <button type="submit">Agendar</button>
+                <p id="mensagem-status"></p>
+            </form>
+        </section>
+
+        <section id="lista-agendamentos">
+            <h2>Meus Agendamentos</h2>
+            <ul id="agendamentos-list">
+                </ul>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
