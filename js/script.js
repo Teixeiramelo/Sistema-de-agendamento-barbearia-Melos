@@ -1,39 +1,25 @@
-// --- DADOS DO PROJETO (Fácil de alterar) ---
 const listaDeServicos = [
     { nome: "Corte de Cabelo", preco: 40.00 },
     { nome: "Barba", preco: 30.00 },
     { nome: "Completo (Corte + Barba)", preco: 65.00 },
     { nome: "Pezinho Simples", preco: 15.00 }
-    // Para adicionar um novo serviço, basta adicionar um novo objeto aqui:
-    // { nome: "Novo Serviço", preco: 50.00 }
 ];
 
-
-// --- VARIÁVEIS E ELEMENTOS HTML ---
 const form = document.getElementById('form-agendamento');
 const listaAgendamentos = document.getElementById('agendamentos-list');
 const mensagemStatus = document.getElementById('mensagem-status');
 
-
-// --- FUNÇÃO DE PREENCHIMENTO DINÂMICO DOS SERVIÇOS (NOVO) ---
 function popularServicos() {
     const selectServico = document.getElementById('servico');
-    
-    // Garante que a primeira opção padrão não seja substituída (Selecione um serviço)
-    // Se o seu HTML já tem a opção padrão, você pode pular o innerHTML = ''
-    
+        
     listaDeServicos.forEach(servico => {
         const option = document.createElement('option');
-        // O VALOR da opção é o nome do serviço
         option.value = servico.nome; 
-        // O TEXTO visível inclui o preço formatado (R$ 40,00)
         option.textContent = `${servico.nome} (R$ ${servico.preco.toFixed(2).replace('.', ',')})`;
         selectServico.appendChild(option);
     });
 }
 
-
-// --- FUNÇÃO 1: Carregar e Exibir Agendamentos ---
 function carregarAgendamentos() {
     const agendamentos = JSON.parse(localStorage.getItem('agendamentosBarbearia')) || [];
     
@@ -68,8 +54,6 @@ function carregarAgendamentos() {
     });
 }
 
-
-// --- FUNÇÃO 2: Salvar um Novo Agendamento ---
 form.addEventListener('submit', function(event) {
     event.preventDefault();
     
@@ -85,20 +69,17 @@ form.addEventListener('submit', function(event) {
 
     const dataAgendamento = new Date(dataHoraInput);
     
-    // 1. VALIDAÇÃO DE DATA PASSADA
     if (dataAgendamento < new Date()) {
         mostrarStatus('Atenção: Não é possível agendar em uma data/hora passada!', 'alert-danger');
         return;
     }
 
-    // 2. VALIDAÇÃO DE HORÁRIO (8h às 20h)
     const hora = dataAgendamento.getHours();
     if (hora < 8 || hora >= 20) {
         mostrarStatus('Horário inválido. Agendamentos são apenas entre 8:00 e 20:00.', 'alert-danger');
         return;
     }
     
-    // 3. VALIDAÇÃO DE INTERVALO (Apenas horários cheios e "e meia")
     const minuto = dataAgendamento.getMinutes();
     if (minuto !== 0 && minuto !== 30) {
         mostrarStatus('Horário inválido. Agendamentos são apenas em horários cheios ou "e meia" (ex: 8:00 ou 8:30).', 'alert-danger');
@@ -106,7 +87,6 @@ form.addEventListener('submit', function(event) {
     }
     
 
-    // Encontra o objeto de serviço para pegar o preço (opcional, mas bom para dados futuros)
     const servicoSelecionado = listaDeServicos.find(s => s.nome === servico);
 
     const novoAgendamento = {
@@ -119,7 +99,6 @@ form.addEventListener('submit', function(event) {
 
     const agendamentos = JSON.parse(localStorage.getItem('agendamentosBarbearia')) || [];
     
-    // Verificação de Conflito: Mesmo horário E mesmo barbeiro
     const conflito = agendamentos.some(item => 
         item.dataHora === novoAgendamento.dataHora && 
         item.barbeiro === novoAgendamento.barbeiro 
@@ -139,7 +118,6 @@ form.addEventListener('submit', function(event) {
 });
 
 
-// --- FUNÇÃO 3: Cancelar Agendamento ---
 function cancelarAgendamento(indexParaRemover) {
     if (confirm('Tem certeza que deseja cancelar este agendamento?')) {
         const agendamentos = JSON.parse(localStorage.getItem('agendamentosBarbearia')) || [];
@@ -151,8 +129,6 @@ function cancelarAgendamento(indexParaRemover) {
     }
 }
 
-
-// --- FUNÇÃO 4: Mostrar Mensagens de Status ---
 function mostrarStatus(mensagem, tipo) {
     mensagemStatus.className = 'mt-3'; 
     mensagemStatus.classList.add('alert', tipo);
@@ -164,7 +140,5 @@ function mostrarStatus(mensagem, tipo) {
     }, 4000);
 }
 
-
-// --- INICIA A APLICAÇÃO ---
 popularServicos(); // NOVO: Chama para preencher o campo Serviço
 carregarAgendamentos();
