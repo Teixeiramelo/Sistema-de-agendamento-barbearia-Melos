@@ -1,45 +1,30 @@
-/* ================================================= */
-/* 1. VARIÁVEIS DE COR */
-/* ================================================= */
 :root {
-    --cor-primaria: #212529;    /* Preto/Cinza Escuro (Base) */
-    --cor-secundaria: #A0522D;   /* Marrom Rústico (Secundária) */
-    --cor-texto: #f8f9fa;      /* Branco Suave (Texto principal) */
-    --cor-destaque: #D4AF37;   /* Ouro Antigo (Para botões e linhas de borda) */
-    --cor-sucesso: limegreen;  /* Verde (Para bordas de agendamento) */
+    --cor-primaria: #212529;
+    --cor-secundaria: #A0522D;  
+    --cor-texto: #f8f9fa;    
+    --cor-destaque: #D4AF37; 
+    --cor-sucesso: limegreen;  
 }
 
-/* ================================================= */
-/* 2. ESTILO GERAL (BODY E FUNDO) - MANTIDO EXATAMENTE COMO VOCÊ DEIXOU */
-/* ================================================= */
 body {
     font-family: 'Roboto', sans-serif;
-    color: var(--cor-texto); /* Texto do corpo padrão é branco */
+    color: var(--cor-texto);
     
-    /* ESTILOS PARA IMAGEM DE FUNDO */
     background-image: url('../img/background.jpg'); 
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-color: #333; 
-
-    /* SUA CONFIGURAÇÃO ORIGINAL DE POSIÇÃO (sem conflitos) */
     background-position: center 10%; 
 }
 
-/* ================================================= */
-/* 3. LAYOUT E CONTEÚDO PRINCIPAL - MANTIDO EXATAMENTE COMO VOCÊ DEIXOU */
-/* ================================================= */
-
-/* Container Principal */
 main.container {
-    background-color: transparent; /* Fundo totalmente transparente */
+    background-color: transparent; 
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); 
 }
 
-/* Estiliza o Header */
 .header-barbearia {
     background-color: var(--cor-primaria);
     color: var(--cor-texto);
@@ -48,49 +33,36 @@ main.container {
     border-bottom: 5px solid var(--cor-destaque);
 }
 
-/* Títulos h1 e h2 */
 h1, h2 {
     font-family: 'Oswald', sans-serif;
 }
 
-/* Título principal (Barbearia Melos) */
 .header-barbearia h1 {
-    /* CORREÇÃO: Cor branca solicitada */
     color: var(--cor-texto); 
     margin-bottom: 0;
 }
 
-/* Títulos h2 (Marcar Horário / Meus Agendamentos) */
 main.container h2 {
-    /* CORREÇÃO: Cor branca solicitada */
     color: var(--cor-texto); 
 }
 
-/* Estilo para a seção de agendamento (garante transparência) */
 #agendamento-form {
     background-color: transparent; 
     border: none; 
     box-shadow: none;
 }
 
-/* ================================================= */
-/* 4. FORMULÁRIO (LEGIBILIDADE) */
-/* ================================================= */
-
-/* Labels (Nome, Barbeiro, etc.) */
 .form-label {
     color: var(--cor-texto); 
     font-weight: bold;
 }
 
-/* Inputs, Selects e Textareas */
 .form-control {
     background-color: rgba(255, 255, 255, 0.9); 
     border-color: var(--cor-secundaria);
     color: #333; 
 }
 
-/* Botão de Agendar */
 .btn-primary {
     background-color: var(--cor-destaque) !important;
     border-color: rgba(212, 175, 55, 0.5) !important; 
@@ -103,9 +75,6 @@ main.container h2 {
     border-color: rgba(212, 175, 55, 0.7) !important;
 }
 
-/* ================================================= */
-/* 5. LISTA DE AGENDAMENTOS */
-/* ================================================= */
 #agendamentos-list li {
     border-left: 5px solid var(--cor-sucesso); 
     margin-bottom: 8px;
@@ -116,17 +85,12 @@ main.container h2 {
     /* CORREÇÃO: Cor branca solicitada */
     color: var(--cor-texto); 
 }
-/* Botão de Cancelar */
+
 #agendamentos-list .btn-danger {
     background-color: crimson;
     border-color: crimson;
 }
 
-/* ================================================= */
-/* 6. LOGO E ALINHAMENTO */
-/* ================================================= */
-
-/* Estilos de Header Flutuante */
 .header-barbearia .container {
     display: flex;
     flex-direction: column;
@@ -134,7 +98,6 @@ main.container h2 {
     justify-content: center;
 }
 
-/* Estilo para a logo flutuante no canto superior direito */
 #logo-flutuante {
     position: fixed;
     top: 20px;
@@ -152,13 +115,8 @@ main.container h2 {
     height: auto;
 }
 
-/* ================================================= */
-/* 7. RESPONSIVIDADE (OTIMIZAÇÃO PARA CELULAR) */
-/* ================================================= */
-
 @media (max-width: 768px) {
     
-    /* 1. Ajuste do Conteúdo Principal */
     main.container {
         padding: 15px; 
         margin-left: 5px;
@@ -166,12 +124,10 @@ main.container h2 {
         box-shadow: none; 
     }
 
-    /* 2. Ajuste do Título Principal */
     .header-barbearia h1 {
         font-size: 1.8rem; 
     }
     
-    /* 3. Ajuste da Logo Flutuante (Mover e Diminuir) */
     #logo-flutuante {
         top: 5px;      
         right: 5px;    
@@ -182,13 +138,11 @@ main.container h2 {
         max-height: 50px; 
     }
 
-    /* 4. Ajuste dos Botões */
     .btn-primary {
         font-size: 1rem;
         padding: 10px;
     }
 
-    /* 5. Ajuste dos Itens da Lista de Agendamentos */
     #agendamentos-list li {
         flex-direction: column; 
         align-items: flex-start; 
@@ -198,16 +152,10 @@ main.container h2 {
         margin-top: 10px; 
     }
     
-    /* 6. Ajuste dos Títulos Secundários */
     main.container h2 {
         font-size: 1.5rem; 
     }
 }
-
-
-/* ================================================= */
-/* 8. ESTILO DO RODAPÉ (FOOTER) */
-/* ================================================= */
 
 .footer-barbearia {
     background-color: var(--cor-primaria);
